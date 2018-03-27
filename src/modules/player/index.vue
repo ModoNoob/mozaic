@@ -27,7 +27,7 @@ export default {
 
 <style lang='sass' scoped>
 #player
-  background: orange
+  background: #444
   min-height: 50px
 
 </style>

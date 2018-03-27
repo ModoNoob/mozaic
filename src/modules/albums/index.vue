@@ -1,5 +1,7 @@
 <template lang='pug'>
   div#albums Hello from Albums!
+    el-button(type='primary', v-on:click='authenticate()') Authenticate!
+    el-button(type='primary', v-on:click='getMySavedAlbums()') Get my saved albums!
 </template>
 
 <script>
@@ -13,19 +15,27 @@ export default {
   },
   computed: {
     ...mapGetters({
-      playerState: '$_albums/albums'
+      albums: '$_albums/albums'
     })
+  },
+  methods: {
+    authenticate () {
+      this.$store.dispatch('$_albums/authenticate')
+    },
+    getMySavedAlbums () {
+      this.$store.dispatch('$_albums/getMySavedAlbums')
+    }
   },
   created () {
     this.$store.registerModule('$_albums', store)
   },
   mounted () {
-    // this.$store.dispatch('$_player/getProducts');
+
   }
 }
 </script>
 
 <style lang='sass' scoped>
 #albums
-  background: blue
+  background: #111
 </style>
