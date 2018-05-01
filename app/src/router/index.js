@@ -2,7 +2,6 @@ import Vue from 'vue'
 import Router from 'vue-router'
 
 import Home from '@/views/Home'
-import SpotifyAuth from '@/views/SpotifyAuth'
 
 import TestContainer from '@/components/TestContainer'
 import TestDefault from '@/components/TestDefault'
@@ -16,7 +15,6 @@ export default new Router({
   base: __dirname,
   routes: [
     { path: '/', component: Home },
-    { path: '/spotify_redirect', component: SpotifyAuth },
     { path: '/test-animations',
       component: TestContainer,
       children: [

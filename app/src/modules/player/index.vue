@@ -1,5 +1,5 @@
 <template lang='pug'>
-  div#player Hello from Player!
+  el-header#player Hello from Player!
 </template>
 
 <script>
@@ -27,7 +27,6 @@ export default {
 
 <style lang='sass' scoped>
 #player
-  background: #444
   min-height: 50px
 
 </style>

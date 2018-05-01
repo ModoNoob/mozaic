@@ -1,7 +1,9 @@
-const SPOTIFY_AUTH_INFO_CHANGED = (state, spotifyAuthInfo) => {
-  state.spotifyAuthInfo = spotifyAuthInfo
+const LOGIN_COMPLETED = (state, params) => {
+  state.isLoggedIn = true
+  state.accessToken = params.accessToken
+  state.refreshToken = params.refreshToken
 }
 
 export default {
-  SPOTIFY_AUTH_INFO_CHANGED
+  LOGIN_COMPLETED
 }

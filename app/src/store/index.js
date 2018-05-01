@@ -9,12 +9,9 @@ Vue.use(Vuex)
 
 const DEBUG = process.env.NODE_ENV === 'development'
 const state = {
-  spotifyAuthInfo: {
-    clientID: '9f23f4f6a47f4ca9aea4d7bf2ee29762',
-    scopes: 'user-library-read',
-    redirectUri: 'http://localhost:8080/spotify_redirect',
-    accessToken: null
-  }
+  isLoggedIn: false,
+  accessToken: null,
+  refreshToken: null
 }
 
 export default new Vuex.Store({

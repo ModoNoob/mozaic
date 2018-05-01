@@ -1,6 +1,10 @@
 <template lang='pug'>
-  div#home
-    albums#albums
+  el-container
+    el-aside(width='300px')
+      el-menu()
+
+    el-main#home
+      albums#albums
 </template>
 
 <script>

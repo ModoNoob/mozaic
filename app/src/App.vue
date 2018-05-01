@@ -1,16 +1,32 @@
 <template lang='pug'>
-  div#app
-    player
-    router-view
+  div#app(v-bind:class='{ shown: this.shown }')
+    router-view(v-if='this.$store.state.isLoggedIn')
+    login(v-if='!this.$store.state.isLoggedIn')
 </template>
 
 <script>
-import Player from '@/modules/player'
+import Login from './views/Login'
 
 export default {
   name: 'mozaic-app',
   components: {
-    Player
+    Login
+  },
+  data () {
+    return {
+      shown: false
+    }
+  },
+  created () {
+    this.shown = true
+  },
+  mounted () {
+    const accessToken = this.$route.query.a
+    const refreshToken = this.$route.query.r
+
+    if (accessToken && refreshToken) {
+      this.$store.commit('LOGIN_COMPLETED', { accessToken, refreshToken })
+    }
   }
 }
 </script>
@@ -21,9 +37,12 @@ export default {
     padding: 0
 
   #app
-    display: flex
-    flex-direction: column
     min-height: 100vh
+    opacity: 0
+    transition: opacity 100ms linear
+
+    &.shown
+      opacity: 1
 
   .child-view
     position: absolute

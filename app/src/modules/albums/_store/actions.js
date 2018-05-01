@@ -1,21 +1,16 @@
 import Spotify from 'spotify-web-api-js'
-// import globalStore from '@/store'
-
-const authenticate = (context) => {
-  // window.location.href = 'https://accounts.spotify.com/authorize?response_type=token&client_id=' + clientID + '&scope=' + scopes + '&redirect_uri=' + redirectUri + '&state=1'
-}
+import globalStore from '@/store'
 
 const getMySavedAlbums = (context) => {
   let s = new Spotify()
-  // s.setAccessToken(access_token)
+  s.setAccessToken(globalStore.state.accessToken)
 
   s.getMySavedAlbums(null, (error, data) => {
     error && console.log(error)
-    console.log(data)
+    context.commit('ALBUMS_LOADED', data.items)
   })
 }
 
 export default {
-  authenticate,
   getMySavedAlbums
 }

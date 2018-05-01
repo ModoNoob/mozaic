@@ -1,7 +1,8 @@
 <template lang='pug'>
-  div#albums Hello from Albums!
-    el-button(type='primary', v-on:click='authenticate()') Authenticate!
-    el-button(type='primary', v-on:click='getMySavedAlbums()') Get my saved albums!
+  el-container#albums Albums
+    el-row
+      el-col.album(v-bind:span='3' v-for='album in this.albums' v-bind:key='album.album.id')
+        img(v-bind:src='album.album.images[1].url')
 </template>
 
 <script>
@@ -19,9 +20,6 @@ export default {
     })
   },
   methods: {
-    authenticate () {
-      this.$store.dispatch('$_albums/authenticate')
-    },
     getMySavedAlbums () {
       this.$store.dispatch('$_albums/getMySavedAlbums')
     }
@@ -30,12 +28,13 @@ export default {
     this.$store.registerModule('$_albums', store)
   },
   mounted () {
-
+    this.getMySavedAlbums()
   }
 }
 </script>
 
 <style lang='sass' scoped>
-#albums
-  background: #111
+  .album
+    img
+      width: 100%
 </style>

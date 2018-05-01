@@ -1,5 +1,7 @@
-const spotifyAuthInfo = state => state.spotifyAuthInfo
+const accessToken = state => state.accessToken
+const refreshToken = state => state.refreshToken
 
 export default {
-  spotifyAuthInfo
+  accessToken,
+  refreshToken
 }

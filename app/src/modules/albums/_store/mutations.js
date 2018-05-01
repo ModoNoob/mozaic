@@ -1,7 +1,8 @@
-const ALBUMS_CHANGED = (state, albums) => {
+const ALBUMS_LOADED = (state, albums) => {
+  console.log(albums)
   state.albums = albums
 }
 
 export default {
-  ALBUMS_CHANGED
+  ALBUMS_LOADED
 }

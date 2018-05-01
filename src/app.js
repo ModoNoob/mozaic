@@ -5,9 +5,11 @@ const bodyParser = require('body-parser')
 const cookieParser = require('cookie-parser')
 const cors = require('cors')
 
-const clientId = ''
-const clientSecret = ''
-const returnUrl = ''
+const clientId = '9f23f4f6a47f4ca9aea4d7bf2ee29762'
+const clientSecret = '109e41132939485a8221592445636348'
+const returnUrl = 'http://localhost:9000/auth/callback'
+const scopes = 'user-library-read'
+
 const stateKey = 'spotify_auth_state'
 
 const app = express()
@@ -20,12 +22,11 @@ app.get('/auth/login', (req, res) => {
   res.cookie(stateKey, state)
 
   // your application requests authorization
-  var scope = 'user-read-private user-read-email';
   res.redirect('https://accounts.spotify.com/authorize?' +
     querystring.stringify({
       response_type: 'code',
       client_id: clientId,
-      scope: scope,
+      scope: scopes,
       redirect_uri: returnUrl,
       state: state
   }))
@@ -37,7 +38,10 @@ app.get('/auth/callback', (req, res) => {
   const storedState = req.cookies ? req.cookies[stateKey] : null
 
   if (state === null || state !== storedState) {
-    res.redirect('/state-mismatch')
+    res.redirect('/error?' +
+      querystring.stringify({
+        e: 'state_mismatch'
+      }))
   } else {
     res.clearCookie(stateKey)
 
@@ -59,11 +63,15 @@ app.get('/auth/callback', (req, res) => {
         const accessToken = body.access_token
         const refreshToken = body.refresh_token
 
-        res.send({ accessToken: accessToken, refreshToken: refreshToken })
-      } else {
-        res.redirect('/error' +
+        res.redirect('/?' +
           querystring.stringify({
-            error: 'invalid_token'
+            a: accessToken,
+            r: refreshToken
+          }))
+      } else {
+        res.redirect('/error?' +
+          querystring.stringify({
+            e: 'invalid_token'
           }))
       }
     })
