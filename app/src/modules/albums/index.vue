@@ -1,8 +1,12 @@
 <template lang='pug'>
-  el-container#albums Albums
-    el-row
-      el-col.album(v-bind:span='3' v-for='album in this.albums' v-bind:key='album.album.id')
-        img(v-bind:src='album.album.images[1].url')
+  el-container#albums
+    //el-header()
+      el-row
+        el-col(v-bind:span='24')
+          h1 Albums
+    el-main
+      el-row
+        el-col.album(v-bind:xs='12' v-bind:md='8' v-bind:lg='4' v-for='album in this.albums' v-bind:key='album.album.id' v-bind:style='getAlbumArtStyle(album.album.images[0].url)')
 </template>
 
 <script>
@@ -20,21 +24,37 @@ export default {
     })
   },
   methods: {
-    getMySavedAlbums () {
-      this.$store.dispatch('$_albums/getMySavedAlbums')
+    getMySavedAlbums (page) {
+      this.$store.dispatch('$_albums/getMySavedAlbums', { page: page })
+    },
+    getAlbumArtStyle (url) {
+      return `background-image: url('${url}')`
     }
   },
   created () {
     this.$store.registerModule('$_albums', store)
   },
   mounted () {
-    this.getMySavedAlbums()
+    for (var i = 0; i < 15; i++) {
+      this.getMySavedAlbums(i)
+    }
   }
 }
 </script>
 
 <style lang='sass' scoped>
   .album
-    img
-      width: 100%
+    padding-bottom: 16.66667%
+    background-size: cover
+    background-position: center center
+    background-repeat: no-repeat
+
+  header,
+  main
+    padding: 0
+
+  h1
+    font-size: 2rem
+    margin-top: 0
+
 </style>
