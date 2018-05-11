@@ -1,12 +1,8 @@
 <template lang='pug'>
   el-container#albums
-    //el-header()
-      el-row
-        el-col(v-bind:span='24')
-          h1 Albums
     el-main
       el-row
-        el-col.album(v-bind:xs='12' v-bind:md='8' v-bind:lg='4' v-for='album in this.albums' v-bind:key='album.album.id' v-bind:style='getAlbumArtStyle(album.album.images[0].url)')
+        el-col.album(v-bind:xs='4' v-bind:md='4' v-bind:lg='4' v-for='album in this.albums' v-bind:key='album.album.id' v-bind:style='getAlbumArtStyle(album.album.images[0].url)')
 </template>
 
 <script>
