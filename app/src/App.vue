@@ -6,6 +6,7 @@
 
 <script>
 import Login from './views/Login'
+import api from '@/api'
 
 export default {
   name: 'mozaic-app',
@@ -27,6 +28,8 @@ export default {
     if (accessToken && refreshToken) {
       this.$store.commit('LOGIN_COMPLETED', { accessToken, refreshToken })
     }
+
+    api.init(accessToken)
   }
 }
 </script>

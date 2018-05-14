@@ -1,4 +1,4 @@
-import Spotify from 'spotify-web-api-js'
+/* import Spotify from 'spotify-web-api-js'
 import globalStore from '@/store'
 
 const getMySavedAlbums = (context, params) => {
@@ -14,8 +14,8 @@ const getMySavedAlbums = (context, params) => {
     error && console.log(error)
     context.commit('ALBUMS_LOADED', data.items)
   })
-}
+} */
 
 export default {
-  getMySavedAlbums
+  // getMySavedAlbums
 }

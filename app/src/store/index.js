@@ -11,7 +11,10 @@ const DEBUG = process.env.NODE_ENV === 'development'
 const state = {
   isLoggedIn: false,
   accessToken: null,
-  refreshToken: null
+  refreshToken: null,
+  albums: [],
+  artists: [],
+  songs: []
 }
 
 export default new Vuex.Store({

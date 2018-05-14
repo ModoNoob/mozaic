@@ -4,6 +4,11 @@ const LOGIN_COMPLETED = (state, params) => {
   state.refreshToken = params.refreshToken
 }
 
+const ALBUMS_LOADED = (state, albums) => {
+  state.albums = state.albums.concat(albums)
+}
+
 export default {
-  LOGIN_COMPLETED
+  LOGIN_COMPLETED,
+  ALBUMS_LOADED
 }
